@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraveCrate - Restaurants</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    :root {
+      --colorBrandGrayedout: rgb(234, 129, 174);
+      --colorBrandPrimaryDark: #C21760;
+      --colorBrandHighlightLvl1: #FDF2F7;
+    }
+    body {
+      background-color: var(--colorBrandHighlightLvl1);
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .search-bar {
+      margin-top: 20px;
+    }
+    .restaurant-card img {
+      height: 150px;
+      object-fit: cover;
+    }
+    .rating {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">CraveCrate</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="foodMenu" role="button" data-bs-toggle="dropdown">
+              Food Choices
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Bangla</a></li>
+              <li><a class="dropdown-item" href="#">Chinese</a></li>
+              <li><a class="dropdown-item" href="#">Italian</a></li>
+              <li><a class="dropdown-item" href="#">Indian</a></li>
+            </ul>
+          </li>
+        </ul>
+        <a href="#" class="btn btn-outline-light">Cart</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="container search-bar">
+    <div class="input-group">
+      <input type="text" id="search" class="form-control" placeholder="Search restaurants...">
+      <button class="btn btn-danger" id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <!-- Restaurant Cards -->
+  <div class="container mt-4">
+    <div class="row" id="restaurantContainer">
+      <!-- Example restaurant card -->
+      <!-- Dynamically populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center mt-4 bg-dark text-white py-3">
+    <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Restaurant data
+    const restaurants = [
+      { name: "Pizza Palace", address: "123 Main St", rating: 4.5, speciality: "Italian", img: "i1.jpg" },
+      { name: "Cafe Petuk", address: "456 River St", rating: 4.2, speciality: "Bangla", img: "b1.jpg" },
+      { name: "The Lucky Chopsticks", address: "789 Sunset Blvd", rating: 4.8, speciality: "Chinese", img: "c1.jpg" },
+      { name: "Curry Corner", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in1.jpg" },
+      { name: "Pasta Paradise", address: "555 Olive Rd", rating: 4.6, speciality: "Italian", img: "it1.jpg" },
+      { name: "Royal Bengal", address: "777 Pearl St", rating: 4.7, speciality: "Bangla", img: "b4.jpg" },
+      { name: "Szechuan Spice", address: "888 Elm Dr", rating: 4.4, speciality: "Chinese", img: "c2.jpg" },
+      { name: "Tandoor Treats", address: "999 Pine St", rating: 4.1, speciality: "Indian", img: "in2.jpg" },
+      { name: "Dolce Vita", address: "1002 Maple Rd", rating: 4.9, speciality: "Italian", img: "it2.jpg" },
+      { name: "Bengali Bistro", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b5.jpg" },
+      { name: "Golden Wok", address: "1201 Cedar St", rating: 4.5, speciality: "Chinese", img: "c3.jpg" },
+      { name: "Tarka", address: "1300 Oak Ln", rating: 4.2, speciality: "Indian", img: "in3.jpg" },
+ { name: "Tasty Treat", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "bi1.jpg" },
+ { name: "KFC", address: "1300 Oak Ln", rating: 4.6, speciality: "Fastfood", img: "ff1.jpg" },
+ { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff2.jpg" },
+ { name: "Baker's", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi4.jpg" },
+ { name: "Imania", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi5.jpg" },
+ { name: "Chillox", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff2.jpg" },
+
+ { name: "Hazi Biriyani", address: "123 Main St", rating: 4.5, speciality: "Bangla", img: "b6.jpg" },
+      { name: "Sultan Dines", address: "456 River St", rating: 4.2, speciality: "Bangla", img: "b8.jpg" },
+      { name: "Wow Momo", address: "789 Sunset Blvd", rating: 4.8, speciality: "Chinese", img: "c4.jpg" },
+      { name: "Khazana", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in4.jpg" },
+      { name: "Italiano", address: "555 Olive Rd", rating: 4.6, speciality: "Italian", img: "it4.jpg" },
+      { name: "Kacchi Point", address: "777 Pearl St", rating: 4.7, speciality: "Bangla", img: "b9.jpg" },
+      { name: "Roof Top", address: "888 Elm Dr", rating: 4.4, speciality: "Chinese", img: "c5.jpg" },
+      { name: "Tandoor", address: "999 Pine St", rating: 4.1, speciality: "Indian", img: "in5.jpg" },
+      { name: "Pasta Palace", address: "1002 Maple Rd", rating: 4.9, speciality: "Italian", img: "it5.jpg" },
+      { name: "Royal Biriyani", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b10.jpg" },
+      { name: "Wok & Roll", address: "1201 Cedar St", rating: 4.5, speciality: "Chinese", img: "c6.jpg" },
+      { name: "Indian Aroma", address: "1300 Oak Ln", rating: 4.2, speciality: "Indian", img: "in6.jpg" },
+ { name: "Heavenly Bakes", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "bi6.jpg" },
+ { name: "KFC", address: "1300 Oak Ln", rating: 4.6, speciality: "Fastfood", img: "ff3.jpg" },
+ { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff4.jpg" },
+ { name: "The Bread Basket", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi8.jpg" },
+ { name: "The Pastry Pantry", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi9.jpg" },
+ { name: "Fry Fast", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff5.jpg" },
+
+
+    ];
+
+    // Populate restaurant cards
+    const restaurantContainer = document.getElementById("restaurantContainer");
+    restaurants.forEach((restaurant) => {
+      const card = `
+        <div class="col-md-4 mb-4">
+          <div class="card restaurant-card">
+            <img src="${restaurant.img}" class="card-img-top" alt="${restaurant.name}">
+            <div class="card-body">
+              <h5 class="card-title">${restaurant.name}</h5>
+              <p class="card-text">
+                <strong>Address:</strong> ${restaurant.address}<br>
+                <strong>Speciality:</strong> ${restaurant.speciality}<br>
+                <span class="rating">${"★".repeat(Math.round(restaurant.rating))}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+      restaurantContainer.innerHTML += card;
+    });
+
+    // Search functionality
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      const searchTerm = document.getElementById("search").value.toLowerCase();
+      const filteredRestaurants = restaurants.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(searchTerm) || restaurant.speciality.toLowerCase().includes(searchTerm)
+      );
+
+      restaurantContainer.innerHTML = ""; // Clear existing cards
+      filteredRestaurants.forEach((restaurant) => {
+        const card = `
+          <div class="col-md-4 mb-4">
+            <div class="card restaurant-card">
+              <img src="${restaurant.img}" class="card-img-top" alt="${restaurant.name}">
+              <div class="card-body">
+                <h5 class="card-title">${restaurant.name}</h5>
+                <p class="card-text">
+                  <strong>Address:</strong> ${restaurant.address}<br>
+                  <strong>Speciality:</strong> ${restaurant.speciality}<br>
+                  <span class="rating">${"★".repeat(Math.round(restaurant.rating))}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+        restaurantContainer.innerHTML += card;
+      });
+    });
+  </script>
+</body>
+</html>
