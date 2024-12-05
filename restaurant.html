@@ -22,11 +22,27 @@
       margin-top: 20px;
     }
     .restaurant-card img {
-      height: 150px;
+      height: 250px;
       object-fit: cover;
     }
     .rating {
       color: gold;
+    }
+
+/*OrderNow Button style */
+    button {
+      background-color: pink; /* Pink background */
+      color: white; /* White text */
+      border: none; /* Remove border */
+      padding: 10px 20px; /* Padding inside the button */
+      font-size: 16px; /* Font size */
+      cursor: pointer; /* Pointer cursor on hover */
+      border-radius: 5px; /* Rounded corners */
+      transition: background-color 0.3s; /* Smooth transition on hover */
+    }
+
+    button:hover {
+      background-color: darkpink; /* Darker pink on hover */
     }
   </style>
 </head>
@@ -82,23 +98,27 @@
   <script>
     // Restaurant data
     const restaurants = [
-      { name: "Pizza Palace", address: "123 Main St", rating: 4.5, speciality: "Italian", img: "i1.jpg" },
+      { name: "Pizza Palace", address: "123 Main St", rating: 4.5, speciality: "Italian", img: "pp1.jpg", button: {
+    text: "Order Now", // The text of the button
+    link: "pizzapalace.html" // The link the button will lead to
+  } },
       { name: "Cafe Petuk", address: "456 River St", rating: 4.2, speciality: "Bangla", img: "b1.jpg" },
       { name: "The Lucky Chopsticks", address: "789 Sunset Blvd", rating: 4.8, speciality: "Chinese", img: "c1.jpg" },
       { name: "Curry Corner", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in1.jpg" },
       { name: "Pasta Paradise", address: "555 Olive Rd", rating: 4.6, speciality: "Italian", img: "it1.jpg" },
       { name: "Royal Bengal", address: "777 Pearl St", rating: 4.7, speciality: "Bangla", img: "b4.jpg" },
       { name: "Szechuan Spice", address: "888 Elm Dr", rating: 4.4, speciality: "Chinese", img: "c2.jpg" },
-      { name: "Tandoor Treats", address: "999 Pine St", rating: 4.1, speciality: "Indian", img: "in2.jpg" },
-      { name: "Dolce Vita", address: "1002 Maple Rd", rating: 4.9, speciality: "Italian", img: "it2.jpg" },
-      { name: "Bengali Bistro", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b5.jpg" },
+      { name: "Tandoor Treats", address: "999 Pine St", rating: 4.1, speciality: "Indian", img: "in13.jpg" },
+      { name: "Dolce Vita", address: "1002 Maple Rd", rating: 4.9, speciality: "Italian", img: "it3.jpg" },
+      { name: "Bengali Bistro", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b15.jpg" },
       { name: "Golden Wok", address: "1201 Cedar St", rating: 4.5, speciality: "Chinese", img: "c3.jpg" },
-      { name: "Tarka", address: "1300 Oak Ln", rating: 4.2, speciality: "Indian", img: "in3.jpg" },
- { name: "Tasty Treat", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "bi1.jpg" },
+{ name: "Tarka", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in13.jpg" },
+   
+ { name: "Tasty Treat", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "g1.jpg" },
  { name: "KFC", address: "1300 Oak Ln", rating: 4.6, speciality: "Fastfood", img: "ff1.jpg" },
- { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff2.jpg" },
- { name: "Baker's", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi4.jpg" },
- { name: "Imania", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi5.jpg" },
+ { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "pp1.jpg" },
+ { name: "Baker's", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "g2.jpg" },
+ { name: "Imania", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "g3.jpg" },
  { name: "Chillox", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff2.jpg" },
 
  { name: "Hazi Biriyani", address: "123 Main St", rating: 4.5, speciality: "Bangla", img: "b6.jpg" },
@@ -110,15 +130,15 @@
       { name: "Roof Top", address: "888 Elm Dr", rating: 4.4, speciality: "Chinese", img: "c5.jpg" },
       { name: "Tandoor", address: "999 Pine St", rating: 4.1, speciality: "Indian", img: "in5.jpg" },
       { name: "Pasta Palace", address: "1002 Maple Rd", rating: 4.9, speciality: "Italian", img: "it5.jpg" },
-      { name: "Royal Biriyani", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b10.jpg" },
+      { name: "Royal Biriyani", address: "1100 Ash St", rating: 4.3, speciality: "Bangla", img: "b18.jpg" },
       { name: "Wok & Roll", address: "1201 Cedar St", rating: 4.5, speciality: "Chinese", img: "c6.jpg" },
       { name: "Indian Aroma", address: "1300 Oak Ln", rating: 4.2, speciality: "Indian", img: "in6.jpg" },
- { name: "Heavenly Bakes", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "bi6.jpg" },
+ { name: "Heavenly Bakes", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "g4.jpg" },
  { name: "KFC", address: "1300 Oak Ln", rating: 4.6, speciality: "Fastfood", img: "ff3.jpg" },
- { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff4.jpg" },
- { name: "The Bread Basket", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi8.jpg" },
- { name: "The Pastry Pantry", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "bi9.jpg" },
- { name: "Fry Fast", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff5.jpg" },
+ { name: "Pizza Dot", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "pp5.jpg" },
+ { name: "The Bread Basket", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "g5.jpg" },
+ { name: "The Pastry Pantry", address: "1300 Oak Ln", rating: 4.7, speciality: "Bakery", img: "g6.jpg" },
+ { name: "Fry Fast", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "ff4.jpg" },
 
 
     ];
@@ -137,6 +157,10 @@
                 <strong>Speciality:</strong> ${restaurant.speciality}<br>
                 <span class="rating">${"★".repeat(Math.round(restaurant.rating))}</span>
               </p>
+
+   <a href="${restaurant.button.link}" target="_blank">
+        <button>${restaurant.button.text}</button>
+      </a>
             </div>
           </div>
         </div>
