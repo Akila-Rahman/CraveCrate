@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Palace - Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    :root {
+      --colorBrandGrayedout: rgb(234, 129, 174);
+      --colorBrandPrimaryDark: #C21760;
+      --colorBrandHighlightLvl1: #FDF2F7;
+    }
+    body {
+      background-color: var(--colorBrandHighlightLvl1);
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .search-bar {
+      margin-top: 20px;
+    }
+    .menuItems img {
+      width: 200px; /* Set the width of all images */
+      height: 200px; /* Set the height of all images */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      border-radius: 10px; /* Optional: Adds rounded corners to images */
+    }
+    .rating {
+      color: gold;
+    }
+
+/*OrderNow Button style */
+    button {
+      background-color: pink; /* Pink background */
+      color: white; /* White text */
+      border: none; /* Remove border */
+      padding: 10px 20px; /* Padding inside the button */
+      font-size: 16px; /* Font size */
+      cursor: pointer; /* Pointer cursor on hover */
+      border-radius: 5px; /* Rounded corners */
+      transition: background-color 0.3s; /* Smooth transition on hover */
+    }
+
+    button:hover {
+      background-color: darkpink; /* Darker pink on hover */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CraveCrate</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu Cards -->
+  <div class="container my-4">
+    <h2 class="mb-4">Pizza Palace - Menu</h2>
+    <div class="row" id="menuContainer">
+      <!-- Menu cards dynamically loaded by script.js -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center mt-4 bg-dark text-white py-3">
+    <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
+  </footer>
+  <script>
+
+// Example menu items for Pizza Palace
+const menuItems = [
+  { name: "Margherita Pizza", ingredients: "Cheese, Tomato, Basil", price: 12, img: "margherita.jpg" },
+  { name: "Pepperoni Pizza", ingredients: "Pepperoni, Cheese, Tomato", price: 15, img: "pepperoni.jpg" },
+  { name: "BBQ Chicken Pizza", ingredients: "BBQ Chicken, Onion, Cheese", price: 18, img: "bbqchicken.jpg" },
+
+
+ { name: "Veggie Pizza", ingredients: "Tomato, Bell Pepper, Olives", price: 14, img: "veggie.jpg" },
+  { name: "Hawaiian Pizza", ingredients: "Ham, Pineapple, Cheese", price: 16, img: "hawaiian.jpg" },
+  { name: "Four Cheese Pizza", ingredients: "Mozzarella, Cheddar, Parmesan", price: 20, img: "fourcheese.jpg" },
+  { name: "Meat Lovers Pizza", ingredients: "Bacon, Sausage, Ham", price: 22, img: "meatlovers.jpg" },
+  { name: "Spinach Alfredo Pizza", ingredients: "Spinach, Alfredo Sauce, Cheese", price: 18, img: "spinach.jpg" },
+  { name: "Buffalo Chicken Pizza", ingredients: "Buffalo Chicken, Ranch Sauce", price: 19, img: "buffalo.jpg" },
+  { name: "Mushroom Pizza", ingredients: "Mushrooms, Garlic, Cheese", price: 15, img: "mushroom.jpg" },
+  { name: "Greek Pizza", ingredients: "Feta Cheese, Olives, Onions", price: 17, img: "greek.jpg" },
+  { name: "Chicken Bacon Ranch Pizza", ingredients: "Chicken, Bacon, Ranch", price: 21, img: "chickenbacon.jpg" },
+  // Add more items as needed
+];
+
+// Cart data
+let cart = [];
+
+// Load menu items dynamically
+function loadMenu() {
+  const menuContainer = document.getElementById("menuContainer");
+  menuContainer.innerHTML = "";
+  menuItems.forEach((item, index) => {
+    menuContainer.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="${item.img}" class="card-img-top" alt="${item.name}">
+          <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.ingredients}</p>
+            <p><strong>Price: $${item.price}</strong></p>
+            <button class="btn btn-danger" onclick="addToCart(${index})">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Add to cart
+function addToCart(index) {
+  const item = menuItems[index];
+  const existingItem = cart.find((cartItem) => cartItem.name === item.name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ ...item, quantity: 1 });
+  }
+
+  updateCart();
+}
+
+// Update cart UI
+function updateCart() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Load menu items on page load
+if (document.getElementById("menuContainer")) {
+  loadMenu();
+}
+
+// Cart Page Logic
+if (document.getElementById("cartItems")) {
+  const cartContainer = document.getElementById("cartItems");
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  storedCart.forEach((item, index) => {
+    cartContainer.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.quantity}</td>
+        <td>$${item.price * item.quantity}</td>
+        <td>
+          <button class="btn btn-success btn-sm" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="btn btn-danger btn-sm" onclick="changeQuantity(${index}, -1)">-</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  // Calculate total
+  const totalPrice = storedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  document.getElementById("totalPrice").innerText = `$${totalPrice}`;
+}
+
+// Change quantity
+function changeQuantity(index, delta) {
+  const storedCart = JSON.parse(localStorage.getItem("cart"));
+  const item = storedCart[index];
+
+  item.quantity += delta;
+  if (item.quantity <= 0) storedCart.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(storedCart));
+  location.reload();
+}
+ </script>
+</body>
+</html>
