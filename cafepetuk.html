@@ -21,6 +21,15 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
+
+
+.custom-navbar {
+            background-color: #C21760; /* Custom color */
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .navbar-nav .nav-link {
+            color: white; /* Custom text color */
+        }
     .search-bar {
       margin-top: 20px;
     }
@@ -49,12 +58,21 @@
     button:hover {
       background-color: darkpink; /* Darker pink on hover */
     }
+
+.footer {
+      background-color: #C21760;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
   </style>
 
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <nav class="navbar navbar-expand-lg navbar-light custom-navbar navbar1">
+
     <div class="container">
       <a class="navbar-brand" href="index.html">CraveCrate</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -77,8 +95,11 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="text-center mt-4 bg-dark text-white py-3">
+
+
+
+<!-- Footer -->
+  <footer class="text-center mt-4 footer">
     <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
   </footer>
   <script>
