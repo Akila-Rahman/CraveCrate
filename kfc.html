@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KFC - Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    :root {
+      --colorBrandGrayedout: rgb(234, 129, 174);
+      --colorBrandPrimaryDark: #C21760;
+      --colorBrandHighlightLvl1: #FDF2F7;
+    }
+    body {
+      background-color: var(--colorBrandHighlightLvl1);
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+.custom-navbar {
+            background-color: #C21760; /* Custom color */
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .navbar-nav .nav-link {
+            color: white; /* Custom text color */
+        }
+
+    .search-bar {
+      margin-top: 20px;
+    }
+    .menuItems img {
+      width: 200px; /* Set the width of all images */
+      height: 1700px; /* Set the height of all images */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      border-radius: 10px; /* Optional: Adds rounded corners to images */
+    }
+    .rating {
+      color: gold;
+    }
+
+/*OrderNow Button style */
+    button {
+      background-color: pink; /* Pink background */
+      color: white; /* White text */
+      border: none; /* Remove border */
+      padding: 10px 20px; /* Padding inside the button */
+      font-size: 16px; /* Font size */
+      cursor: pointer; /* Pointer cursor on hover */
+      border-radius: 5px; /* Rounded corners */
+      transition: background-color 0.3s; /* Smooth transition on hover */
+    }
+
+    button:hover {
+      background-color: darkpink; /* Darker pink on hover */
+    }
+
+.footer {
+      background-color: #C21760;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light custom-navbar navbar1">
+
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CraveCrate</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu Cards -->
+  <div class="container my-4">
+    <h2 class="mb-4">KFC - Menu</h2>
+    <div class="row" id="menuContainer">
+      <!-- Menu cards dynamically loaded by script.js -->
+    </div>
+  </div>
+
+<!-- Footer -->
+  <footer class="text-center mt-4 footer">
+    <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
+  </footer>
+  <script>
+
+// Example menu items for Pizza Palace
+const menuItems = [
+{ name: "Original Recipe Chicken", ingredients: "Classic fried chicken, seasoned with a secret blend of spices and crispy on the outside, tender on the inside.", price: 12, img: "original_recipe_chicken.jpg" },
+{ name: "Extra Crispy Chicken", ingredients: "Fried chicken with an extra crispy, crunchy coating for a satisfying texture and flavor.", price: 13, img: "extra_crispy_chicken.jpg" },
+{ name: "Chicken Tenders", ingredients: "Crispy, breaded chicken tenders, served with your choice of dipping sauce.", price: 11, img: "chicken_tenders.jpg" },
+{ name: "Chicken Popcorn", ingredients: "Bite-sized pieces of chicken, coated in a crispy batter, perfect for snacking or sharing.", price: 9, img: "chicken_popcorn.jpg" },
+{ name: "KFC Bucket", ingredients: "A variety of fried chicken pieces served in a bucket, perfect for sharing with family or friends.", price: 18, img: "bucket.jpg" },
+{ name: "Family Feast", ingredients: "A generous feast with a selection of fried chicken, sides, and drinks for the whole family to enjoy.", price: 25, img: "family_feast.jpg" },
+{ name: "Coleslaw", ingredients: "A refreshing side dish made with finely shredded cabbage, carrots, and a creamy dressing.", price: 5, img: "coleslaw.jpg" },
+{ name: "French Fries", ingredients: "Crispy golden fries, seasoned to perfection and served hot and fresh.", price: 4, img: "french fries.jpg" },
+{ name: "Caesar Salad", ingredients: "Crisp romaine lettuce, Parmesan cheese, croutons, and Caesar dressing.", price: 7, img: "caesar_salad.jpg" },
+
+{ name: "Spicy Chicken", ingredients: "Fried chicken pieces coated in a spicy, flavorful seasoning for those who enjoy a little heat.", price: 13, img: "spicy_chicken burger.jpg" },
+{ name: "Popcorn Chicken with Fries", ingredients: "Crispy popcorn chicken served with a side of golden fries, perfect for a snack or meal.", price: 10, img: "popcorn_chicken_with_fries.jpg" },
+{ name: "Lava Cake", ingredients: "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.", price: 6, img: "lava_cake.jpg" },
+
+{ name: "Zinger Sandwich", ingredients: "Crispy fried chicken fillet, lettuce, mayo, and spicy sauce, served in a soft bun.", price: 8, img: "zinger_sandwich.jpg" },
+{ name: "Spicy Tender Wrap", ingredients: "Spicy breaded chicken tenders, lettuce, tomatoes, and spicy mayo wrapped in a soft flour tortilla.", price: 7, img: "spicy_tender_wrap.jpg" },
+{ name: "Crispy Chicken Wrap", ingredients: "Crispy chicken tenders, lettuce, pickles, and mayo wrapped in a soft flour tortilla.", price: 6, img: "crispy_chicken_wrap.jpg" },
+{ name: "Gravy with Fries", ingredients: "Crispy fries topped with rich, savory gravy for a comforting side dish.", price: 5, img: "gravy_with_fries.jpg" },
+{ name: "BBQ Chicken", ingredients: "Grilled chicken smothered in a smoky BBQ sauce, served with a side of fries or coleslaw.", price: 12, img: "bbq_chicken.jpg" },
+{ name: "Classic Chicken Tenders Box", ingredients: "A box of classic crispy chicken tenders, served with your choice of dipping sauces.", price: 8, img: "classic_chicken_tenders_box.jpg" },
+
+
+  // Add more items as needed
+];
+
+// Cart data
+let cart = [];
+
+// Load menu items dynamically
+function loadMenu() {
+  const menuContainer = document.getElementById("menuContainer");
+  menuContainer.innerHTML = "";
+  menuItems.forEach((item, index) => {
+    menuContainer.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="${item.img}" class="card-img-top" alt="${item.name}">
+          <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.ingredients}</p>
+            <p><strong>Price: $${item.price}</strong></p>
+            <button class="btn btn-danger" onclick="addToCart(${index})">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Add to cart
+function addToCart(index) {
+  const item = menuItems[index];
+  const existingItem = cart.find((cartItem) => cartItem.name === item.name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ ...item, quantity: 1 });
+  }
+
+  updateCart();
+}
+
+// Update cart UI
+function updateCart() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Load menu items on page load
+if (document.getElementById("menuContainer")) {
+  loadMenu();
+}
+
+// Cart Page Logic
+if (document.getElementById("cartItems")) {
+  const cartContainer = document.getElementById("cartItems");
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  storedCart.forEach((item, index) => {
+    cartContainer.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.quantity}</td>
+        <td>$${item.price * item.quantity}</td>
+        <td>
+          <button class="btn btn-success btn-sm" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="btn btn-danger btn-sm" onclick="changeQuantity(${index}, -1)">-</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  // Calculate total
+  const totalPrice = storedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  document.getElementById("totalPrice").innerText = `$${totalPrice}`;
+}
+
+// Change quantity
+function changeQuantity(index, delta) {
+  const storedCart = JSON.parse(localStorage.getItem("cart"));
+  const item = storedCart[index];
+
+  item.quantity += delta;
+  if (item.quantity <= 0) storedCart.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(storedCart));
+  location.reload();
+}
+ </script>
+</body>
+</html>
