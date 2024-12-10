@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pasta Paradise - Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    :root {
+      --colorBrandGrayedout: rgb(234, 129, 174);
+      --colorBrandPrimaryDark: #C21760;
+      --colorBrandHighlightLvl1: #FDF2F7;
+    }
+    body {
+      background-color: var(--colorBrandHighlightLvl1);
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+.custom-navbar {
+            background-color: #C21760; /* Custom color */
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .navbar-nav .nav-link {
+            color: white; /* Custom text color */
+        }
+
+    .search-bar {
+      margin-top: 20px;
+    }
+    .menuItems img {
+      width: 200px; /* Set the width of all images */
+      height: 1700px; /* Set the height of all images */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      border-radius: 10px; /* Optional: Adds rounded corners to images */
+    }
+    .rating {
+      color: gold;
+    }
+
+/*OrderNow Button style */
+    button {
+      background-color: pink; /* Pink background */
+      color: white; /* White text */
+      border: none; /* Remove border */
+      padding: 10px 20px; /* Padding inside the button */
+      font-size: 16px; /* Font size */
+      cursor: pointer; /* Pointer cursor on hover */
+      border-radius: 5px; /* Rounded corners */
+      transition: background-color 0.3s; /* Smooth transition on hover */
+    }
+
+    button:hover {
+      background-color: darkpink; /* Darker pink on hover */
+    }
+
+.footer {
+      background-color: #C21760;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light custom-navbar navbar1">
+
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CraveCrate</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu Cards -->
+  <div class="container my-4">
+    <h2 class="mb-4">Pasta Paradise - Menu</h2>
+    <div class="row" id="menuContainer">
+      <!-- Menu cards dynamically loaded by script.js -->
+    </div>
+  </div>
+
+<!-- Footer -->
+  <footer class="text-center mt-4 footer">
+    <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
+  </footer>
+  <script>
+
+// Example menu items for Pizza Palace
+const menuItems = [
+{ name: "Pasta Paradise Signature Spaghetti", ingredients: "Spaghetti with a rich tomato sauce, basil, garlic, and a touch of olive oil.", price: 14, img: "signature_spaghetti.jpg" },
+{ name: "Fettuccine Alfredo", ingredients: "Creamy Alfredo sauce with fettuccine pasta, Parmesan cheese, and a sprinkle of parsley.", price: 16, img: "fettuccine_alfredo.jpg" },
+{ name: "Pasta Primavera", ingredients: "Penne pasta with mixed vegetables, olive oil, garlic, and a hint of lemon zest.", price: 13, img: "pasta_primavera.jpg" },
+{ name: "Lasagna al Forno", ingredients: "Layers of pasta, beef ragu, ricotta cheese, béchamel sauce, and mozzarella.", price: 18, img: "lasagna_forno.jpg" },
+{ name: "Lasagna", ingredients: "Tagliatelle pasta tossed in a rich truffle cream sauce with shaved truffle and Parmesan.", price: 20, img: "lasagna.jpg" },
+{ name: "Gnocchi di Ricotta", ingredients: "Soft ricotta gnocchi served with a creamy butter sage sauce.", price: 17, img: "gnocchi_ricotta.jpg" },
+{ name: "Ravioli", ingredients: "Homemade ravioli filled with spinach and ricotta, served with a tomato-basil sauce.", price: 16, img: "ravioli.jpg" },
+{ name: "Penne Pasta", ingredients: "Penne pasta in a spicy tomato sauce with garlic, chili flakes, and parsley.", price: 12, img: "penne_pasta.jpg" },
+{ name: "Seafood Pasta", ingredients: "Spaghetti with mixed seafood (shrimp, mussels, squid) in a tomato-based sauce with garlic and herbs.", price: 22, img: "seafood_pasta.jpg" },
+{ name: "Baked Ziti", ingredients: "Ziti pasta baked with marinara sauce, ricotta, mozzarella, and Parmesan cheese.", price: 14, img: "baked_ziti.jpg" },
+{ name: "Pappardelle Bolognese", ingredients: "Wide pappardelle pasta with a slow-cooked beef and tomato ragu, topped with Parmesan.", price: 19, img: "pappardelle_bolognese.jpg" },
+{ name: "Fusilli Pesto", ingredients: "Fusilli pasta with homemade basil pesto, pine nuts, and Parmesan cheese.", price: 13, img: "fusilli_pesto.jpg" }
+
+  // Add more items as needed
+];
+
+// Cart data
+let cart = [];
+
+// Load menu items dynamically
+function loadMenu() {
+  const menuContainer = document.getElementById("menuContainer");
+  menuContainer.innerHTML = "";
+  menuItems.forEach((item, index) => {
+    menuContainer.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="${item.img}" class="card-img-top" alt="${item.name}">
+          <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.ingredients}</p>
+            <p><strong>Price: $${item.price}</strong></p>
+            <button class="btn btn-danger" onclick="addToCart(${index})">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Add to cart
+function addToCart(index) {
+  const item = menuItems[index];
+  const existingItem = cart.find((cartItem) => cartItem.name === item.name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ ...item, quantity: 1 });
+  }
+
+  updateCart();
+}
+
+// Update cart UI
+function updateCart() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Load menu items on page load
+if (document.getElementById("menuContainer")) {
+  loadMenu();
+}
+
+// Cart Page Logic
+if (document.getElementById("cartItems")) {
+  const cartContainer = document.getElementById("cartItems");
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  storedCart.forEach((item, index) => {
+    cartContainer.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.quantity}</td>
+        <td>$${item.price * item.quantity}</td>
+        <td>
+          <button class="btn btn-success btn-sm" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="btn btn-danger btn-sm" onclick="changeQuantity(${index}, -1)">-</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  // Calculate total
+  const totalPrice = storedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  document.getElementById("totalPrice").innerText = `$${totalPrice}`;
+}
+
+// Change quantity
+function changeQuantity(index, delta) {
+  const storedCart = JSON.parse(localStorage.getItem("cart"));
+  const item = storedCart[index];
+
+  item.quantity += delta;
+  if (item.quantity <= 0) storedCart.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(storedCart));
+  location.reload();
+}
+ </script>
+</body>
+</html>
