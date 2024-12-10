@@ -18,6 +18,15 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
+
+.custom-navbar {
+            background-color: #C21760; /* Custom color */
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .navbar-nav .nav-link {
+            color: white; /* Custom text color */
+        }
+
     .search-bar {
       margin-top: 20px;
     }
@@ -45,13 +54,22 @@
     button:hover {
       background-color: darkpink; /* Darker pink on hover */
     }
+
+.footer {
+      background-color: #C21760;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-lg navbar-light custom-navbar navbar1">
+
     <div class="container">
-      <a class="navbar-brand" href="#">CraveCrate</a>
+      <a class="navbar-brand" href="index.html">CraveCrate</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -91,7 +109,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="text-center mt-4 bg-dark text-white py-3">
+  <footer class="text-center mt-4 footer">
     <p>&copy; 2024 CraveCrate. All Rights Reserved.</p>
   </footer>
 
@@ -111,13 +129,16 @@
     text: "Order Now", // The text of the button
     link: "luckychopsticks.html" // The link the button will lead to
   }},
-      { name: "Curry Corner", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in1.jpg", button: {
+
+
+{ name: "Tarka", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in13.jpg", button: {
     text: "Order Now", // The text of the button
-    link: "cafepetuk.html" // The link the button will lead to
+    link: "tarka.html" // The link the button will lead to
   }  },
+
       { name: "Pasta Paradise", address: "555 Olive Rd", rating: 4.6, speciality: "Italian", img: "it1.jpg" , button: {
     text: "Order Now", // The text of the button
-    link: "cafepetuk.html" // The link the button will lead to
+    link: "pastaparadise.html" // The link the button will lead to
   } },
       { name: "Royal Bengal", address: "777 Pearl St", rating: 4.7, speciality: "Bangla", img: "b4.jpg" , button: {
     text: "Order Now", // The text of the button
@@ -143,10 +164,13 @@
     text: "Order Now", // The text of the button
     link: "cafepetuk.html" // The link the button will lead to
   }  },
-{ name: "Tarka", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in13.jpg", button: {
+
+
+      { name: "Curry Corner", address: "321 Market Ave", rating: 4.3, speciality: "Indian", img: "in1.jpg", button: {
     text: "Order Now", // The text of the button
     link: "cafepetuk.html" // The link the button will lead to
   }  },
+
    
  { name: "Tasty Treat", address: "Dhaka", rating: 4.2, speciality: "Bakery", img: "g1.jpg", button: {
     text: "Order Now", // The text of the button
@@ -154,7 +178,7 @@
   }  },
  { name: "KFC", address: "1300 Oak Ln", rating: 4.6, speciality: "Fastfood", img: "ff1.jpg", button: {
     text: "Order Now", // The text of the button
-    link: "cafepetuk.html" // The link the button will lead to
+    link: "kfc.html" // The link the button will lead to
   }  },
  { name: "Pizza Hut", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "pp5.jpg", button: {
     text: "Order Now", // The text of the button
@@ -229,7 +253,7 @@
     text: "Order Now", // The text of the button
     link: "cafepetuk.html" // The link the button will lead to
   }  },
- { name: "Pizza Dot", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "pp5.jpg" , button: {
+ { name: "Pizza Dot", address: "1300 Oak Ln", rating: 4.7, speciality: "Fastfood", img: "pp4.jpg" , button: {
     text: "Order Now", // The text of the button
     link: "cafepetuk.html" // The link the button will lead to
   } },
